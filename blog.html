@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Omnisoft Digital Solutions</title>
+
+    <!-- SEO and Social Sharing Meta Tags -->
+    <meta name="description" content="Explore Omnisoft Insights for the latest news, trends, and expert opinions on web development, UI/UX design, backend systems, and project management.">
+    <meta property="og:title" content="Blog - Omnisoft Digital Solutions">
+    <meta property="og:description" content="Explore Omnisoft Insights for the latest news, trends, and expert opinions on technology and digital solutions.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=1200&auto=format&fit=crop">
+    <meta property="og:url" content="blog.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Blog - Omnisoft Digital Solutions">
+    <meta name="twitter:description" content="Explore Omnisoft Insights for the latest news, trends, and expert opinions on technology and digital solutions.">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=1200&auto=format&fit=crop">
+    
+    <!-- Tailwind CSS Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <!-- Google Fonts (Poppins) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <style>
+        #main-header {
+            background-color: rgba(26, 16, 60, 0.85); /* Deep Violet Transparent */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+        .scrolling-wrapper { 
+            display: flex; 
+            flex-wrap: nowrap; 
+            animation: scroll 40s linear infinite;
+            will-change: transform; /* Performance hint for smooth animation */
+        }
+        .scroll-reverse {
+            animation-direction: reverse;
+        }
+
+        .carousel-container { overflow: hidden; -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); }
+
+        /* Animation for blinking cursor in Hero section */
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+        .hero-title::after {
+            content: '_';
+            font-weight: 800;
+            color: #8b5cf6; /* Violet-500 */
+            margin-left: 0.5rem;
+            animation: blink 1.2s steps(1) infinite;
+        }
+        
+        /* New animation for Team section card */
+        @keyframes fadeIn { 
+            from { opacity: 0.5; transform: scale(0.98); } 
+            to { opacity: 1; transform: scale(1); } 
+        }
+        .animate-fade-in { animation: fadeIn 0.5s ease-out forwards; }
+
+        /* Hide scrollbar for elements */
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Helper for masonry layout */
+        .avoid-break {
+            break-inside: avoid;
+        }
+        
+        /* Search highlight style */
+        mark.search-highlight {
+            background-color: #fef08a; /* yellow-200 */
+            color: #713f12; /* yellow-900 */
+            border-radius: 3px;
+            padding: 0 2px;
+        }
+
+        /* Animations for Chatbot Modal */
+        @keyframes fadeInOverlay {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .animate-fade-in-overlay { animation: fadeInOverlay 0.3s ease-out forwards; }
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .animate-zoom-in { animation: zoomIn 0.3s ease-out forwards; }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.1.1/",
+    "react": "https://aistudiocdn.com/react@^19.1.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/"
+  }
+}
+</script>
+</head>
+<body class="font-poppins bg-slate-100 dark:bg-[#1a103c] text-slate-800 dark:text-slate-200 overflow-x-hidden pt-[70px] transition-colors duration-500">
+    <div id="root"></div>
+    <script type="module" src="/blog-entry.tsx"></script>
+</body>
+</html>

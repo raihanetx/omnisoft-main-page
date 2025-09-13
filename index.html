@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Omnisoft - Crafting Digital Solutions</title>
+
+    <!-- SEO and Social Sharing Meta Tags -->
+    <meta name="description" content="Omnisoft builds robust, scalable, and elegant digital solutions, specializing in web/mobile app development, UI/UX design, and cloud services. Your vision, engineered with precision.">
+    <meta property="og:title" content="Omnisoft - Crafting Digital Solutions">
+    <meta property="og:description" content="Omnisoft builds robust, scalable, and elegant digital solutions. Your vision, engineered with precision.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1550439062-609e1531270e?q=80&w=1200&auto=format&fit=crop">
+    <meta property="og:url" content="">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Omnisoft - Crafting Digital Solutions">
+    <meta name="twitter:description" content="Omnisoft builds robust, scalable, and elegant digital solutions. Your vision, engineered with precision.">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1550439062-609e1531270e?q=80&w=1200&auto=format&fit=crop">
+
+    <!-- Preload critical assets -->
+    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1550439062-609e1531270e?q=80&w=2070&auto=format&fit=crop" />
+    
+    <!-- Tailwind CSS Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <!-- Google Fonts (Poppins) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <style>
+        .workflow-step { position: relative; }
+        
+        /* Desktop Workflow Arrow */
+        @media (min-width: 1024px) {
+            .workflow-step:not(:last-child)::after {
+                content: '»';
+                font-family: 'Poppins', sans-serif;
+                font-weight: 900;
+                position: absolute;
+                top: 2.5rem;
+                right: -2rem;
+                transform: translateY(-50%);
+                color: #a78bfa; /* Violet-400 */
+                font-size: 2rem;
+            }
+        }
+
+        /* Mobile Workflow Connector Line */
+        @media (max-width: 1023px) {
+            .workflow-step:not(:first-child)::before {
+                content: '';
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                top: -3rem; /* Corresponds to gap-y-12 */
+                height: 3rem; /* Spans the gap */
+                width: 2px;
+                /* Creates a dashed line effect */
+                background-image: linear-gradient(to bottom, #8b5cf6 50%, transparent 50%); 
+                background-size: 2px 8px;
+                background-repeat: repeat-y;
+            }
+        }
+
+
+        @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+        .scrolling-wrapper { 
+            display: flex; 
+            flex-wrap: nowrap; 
+            animation: scroll 40s linear infinite;
+            will-change: transform; /* Performance hint for smooth animation */
+        }
+        .scroll-reverse {
+            animation-direction: reverse;
+        }
+
+        .carousel-container { overflow: hidden; -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); }
+
+        /* Animation for Hero Text */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0; /* Start hidden */
+        }
+        
+        /* New animation for Team section card */
+        @keyframes fadeIn { 
+            from { opacity: 0.5; transform: scale(0.98); } 
+            to { opacity: 1; transform: scale(1); } 
+        }
+        .animate-fade-in { animation: fadeIn 0.5s ease-out forwards; }
+
+        /* Hide scrollbar for elements */
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Helper for masonry layout */
+        .avoid-break {
+            break-inside: avoid;
+        }
+        
+        /* Search highlight style */
+        mark.search-highlight {
+            background-color: #fef08a; /* yellow-200 */
+            color: #713f12; /* yellow-900 */
+            border-radius: 3px;
+            padding: 0 2px;
+        }
+
+        /* Animations for Chatbot Modal */
+        @keyframes fadeInOverlay {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .animate-fade-in-overlay { animation: fadeInOverlay 0.3s ease-out forwards; }
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .animate-zoom-in { animation: zoomIn 0.3s ease-out forwards; }
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-slide-in-up { animation: slideInUp 0.3s ease-out forwards; }
+    </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.1.1/",
+    "react": "https://aistudiocdn.com/react@^19.1.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.19.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="font-poppins bg-slate-100 dark:bg-[#1a103c] text-slate-800 dark:text-slate-200 overflow-x-hidden pt-[70px] transition-colors duration-500">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+</body>
+</html>
