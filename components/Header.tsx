@@ -3,9 +3,11 @@ import React, { useState, useEffect, useCallback } from 'react';
 const Header: React.FC = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState('home');
-    const [theme, setTheme] = useState(
-        localStorage.getItem('theme') ?? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
-    );
+    const [theme, setTheme] = useState(() => {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) return savedTheme;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    });
 
     useEffect(() => {
         if (theme === 'dark') {
@@ -16,7 +18,7 @@ const Header: React.FC = () => {
             localStorage.setItem('theme', 'light');
         }
     }, [theme]);
-    
+
     const toggleTheme = () => {
         setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
     };
