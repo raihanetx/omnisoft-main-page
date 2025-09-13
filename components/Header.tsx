@@ -3,15 +3,18 @@ import React, { useState, useEffect, useCallback } from 'react';
 const Header: React.FC = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState('home');
-    const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
+    const [theme, setTheme] = useState(
+        localStorage.getItem('theme') ?? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+    );
 
     useEffect(() => {
-        if (theme === 'light') {
-            document.documentElement.classList.remove('dark');
-        } else {
+        if (theme === 'dark') {
             document.documentElement.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
         }
-        localStorage.setItem('theme', theme);
     }, [theme]);
     
     const toggleTheme = () => {
